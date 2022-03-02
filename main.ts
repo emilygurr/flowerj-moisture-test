@@ -3,17 +3,19 @@ let buttontouch = 0
 basic.showIcon(IconNames.Heart)
 serial.setBaudRate(BaudRate.BaudRate115200)
 serial.writeString("ready")
+dfplayer.MP3_setSerial(SerialPin.P0, SerialPin.P1)
+dfplayer.setVolume(15)
 basic.forever(function () {
-    buttontouch = pins.digitalReadPin(DigitalPin.P0)
-    moistureReading = pins.digitalReadPin(DigitalPin.P0)
-    if (buttontouch == 1) {
+    buttontouch = pins.digitalReadPin(DigitalPin.P3)
+    moistureReading = pins.digitalReadPin(DigitalPin.P6)
+    if (buttontouch == 0) {
         serial.writeValue("value", 1)
         basic.pause(500)
         if (moistureReading <= 150) {
-            music.playTone(262, music.beat(BeatFraction.Double))
+            dfplayer.folderPlay(1, 1, dfplayer.yesOrNot.type1)
         }
         if (moistureReading >= 151) {
-            music.playMelody("G A E G G - - - ", 120)
+            dfplayer.folderPlay(2, 2, dfplayer.yesOrNot.type1)
         }
     } else {
         serial.writeString("not")
