@@ -7,8 +7,8 @@ dfplayer.MP3_setSerial(SerialPin.P12, SerialPin.P13)
 dfplayer.setVolume(30)
 pins.touchSetMode(TouchTarget.P2, TouchTargetMode.Capacitive)
 basic.forever(function () {
-    buttontouch = pins.digitalReadPin(DigitalPin.P9)
-    moistureReading = pins.digitalReadPin(DigitalPin.P6)
+    buttontouch = pins.digitalReadPin(DigitalPin.P2)
+    moistureReading = pins.digitalReadPin(DigitalPin.P7)
     if (buttontouch == 1) {
         serial.writeValue("value", 1)
         basic.pause(500)
