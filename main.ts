@@ -3,8 +3,8 @@ let buttontouch = 0
 basic.showIcon(IconNames.Heart)
 serial.setBaudRate(BaudRate.BaudRate115200)
 serial.writeString("ready")
-dfplayer.MP3_setSerial(SerialPin.P12, SerialPin.P13)
-dfplayer.setVolume(30)
+dfplayer.MP3_setSerial(SerialPin.P1, SerialPin.P0)
+dfplayer.setVolume(18)
 pins.touchSetMode(TouchTarget.P2, TouchTargetMode.Capacitive)
 basic.forever(function () {
     buttontouch = pins.digitalReadPin(DigitalPin.P2)
@@ -13,9 +13,11 @@ basic.forever(function () {
         serial.writeValue("value", 1)
         basic.pause(500)
         if (moistureReading <= 150) {
+            dfplayer.MP3_setSerial(SerialPin.P1, SerialPin.P0)
             dfplayer.folderPlay(2, 2, dfplayer.yesOrNot.type1)
         }
         if (moistureReading >= 151) {
+            dfplayer.MP3_setSerial(SerialPin.P1, SerialPin.P0)
             dfplayer.folderPlay(1, 1, dfplayer.yesOrNot.type1)
         }
     } else {
